@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ToggleLanguage from './components/toggles/ToggleLanguage';
+import ToggleTheme from './components/toggles/ToggleThemes';
+import Provider from './i18n/Provider';
+
+import { useSelector } from 'react-redux';
+import { t } from './i18n/translate';
+
+import { selectedLanguage, selectedTheme } from './redux/selectors';
+
+import { THEMES } from './redux/types';
+
+import './sass/main.scss';
 
 function App() {
+  const language = useSelector(selectedLanguage);
+  const { isDark } = useSelector(selectedTheme);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider locale={language}>
+      <div className={`app ${isDark ? THEMES.DARK : THEMES.LIGHT}`}>
+        <ToggleLanguage />
+        <ToggleTheme />
+        {t('greeting')}
+      </div>
+    </Provider>
   );
 }
 
