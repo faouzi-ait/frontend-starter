@@ -1,0 +1,10 @@
+.theme {
+    padding: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+       background: rgb(168, 168, 168);
+    }
+}

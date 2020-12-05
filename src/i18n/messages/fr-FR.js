@@ -1,7 +1,8 @@
-import { LOCALES } from "../constants";
+import { LOCALES } from '../constants';
 
 export default {
   [LOCALES.FRENCH]: {
-    greeting: "bonjour",
+    greeting: 'bonjour',
+    home: 'page principal',
   },
 };

@@ -2,18 +2,23 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { t } from '../../i18n/translate';
 
-import { switchTheme } from '../../redux/actions/themeAction';
+import { switchTheme } from '../../redux/actions/theme';
 import { selectedTheme } from '../../redux/selectors';
 
-import { THEMES } from '../../redux/types';
+import sun from '../../images/sun.svg';
+import night from '../../images/night.svg';
 
 function ToggleThemes() {
   const dispatch = useDispatch();
   const { isDark } = useSelector(selectedTheme);
 
   return (
-    <button onClick={() => dispatch(switchTheme())}>
-      {!isDark ? THEMES.DARK : THEMES.LIGHT}
+    <button onClick={() => dispatch(switchTheme())} className="theme">
+      <img
+        src={isDark ? night : sun}
+        alt={isDark ? 'dark' : 'light'}
+        width="10"
+      />
     </button>
   );
 }
