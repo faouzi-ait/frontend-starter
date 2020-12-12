@@ -10,6 +10,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import PublicRoutes from '../PublicRoutes';
+import PrivateRoutes from '../PrivateRoutes';
 
 import Header from './ui/Header';
 
@@ -25,8 +27,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <PublicRoutes exact path="/register" component={Register} />
+          <PrivateRoutes exact path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
     </Provider>

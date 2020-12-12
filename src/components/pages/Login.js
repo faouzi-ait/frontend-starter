@@ -55,9 +55,11 @@ function Login() {
               value={password}
             />
           </div>
-          <button type="submit">
-            {authenticating ? 'Logging in...' : 'Login'}
-          </button>
+          {!loggedIn && (
+            <button type="submit">
+              {authenticating ? 'Logging in...' : 'Login'}
+            </button>
+          )}
           <span>
             {errors &&
               errors.data &&
