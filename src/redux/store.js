@@ -1,12 +1,18 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-// import logger from 'redux-logger';
+import logger from 'redux-logger';
 import { language } from './reducers/language';
-import { getTheme } from './reducers/themeReducer';
+import { theme } from './reducers/theme';
+import { login } from './reducers/login';
 
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-const combinedReducers = combineReducers({ language, getTheme });
+import createSagaMiddleware from 'redux-saga';
+import { sagas } from './saga';
+
+const combinedReducers = combineReducers({ language, theme, login });
+
+const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
   key: 'root',
@@ -19,9 +25,10 @@ export const persistedReducer = persistReducer(persistConfig, combinedReducers);
 export const store = createStore(
   persistedReducer,
   compose(
-    applyMiddleware()
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(logger, sagaMiddleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 
+sagaMiddleware.run(sagas);
 export const persistor = persistStore(store);

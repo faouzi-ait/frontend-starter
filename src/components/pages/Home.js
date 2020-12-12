@@ -9,7 +9,7 @@ function Home() {
   const { isDark } = useSelector(selectedTheme);
 
   return (
-    <div className={`app ${isDark ? THEMES.DARK : THEMES.LIGHT}`}>
+    <div className={`baseTheme app ${isDark ? THEMES.DARK : THEMES.LIGHT}`}>
       {t('greeting')}, {t('home')}
     </div>
   );

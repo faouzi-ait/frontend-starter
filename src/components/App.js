@@ -2,7 +2,7 @@ import React from 'react';
 import Provider from '../i18n/Provider';
 
 import { useSelector } from 'react-redux';
-import { Switch, Route, Router } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { selectedLanguage } from '../redux/selectors';
 import history from '../history';
 
@@ -11,7 +11,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 
-import Toggle from './ui/Toggles';
+import Header from './ui/Header';
 
 import '../sass/index.scss';
 
@@ -20,8 +20,8 @@ function App() {
 
   return (
     <Provider locale={language}>
-      <Router history={history}>
-        <Toggle />
+      <Router>
+        <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
