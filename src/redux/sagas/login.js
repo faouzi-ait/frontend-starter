@@ -20,17 +20,17 @@ export function* authentication({ payload }) {
     yield put(setAuthenticationError({ data, status }));
     yield put(setIsAuthenticating(false));
     yield delay(4000);
-    yield put(setAuthenticationError({}));
+    yield put(setAuthenticationError(null));
   } else {
     localStorage.setItem('CURRENT_USER', JSON.stringify(result.data.token));
-    yield call(fetchUserInfo);
+    yield call(decodeUserProfile);
     yield put(setIsUserAuthenticated(true));
     // window.location.href = '/dashboard';
   }
   yield put(setIsAuthenticating(false));
 }
 
-export function* fetchUserInfo() {
+export function* decodeUserProfile() {
   const user = localStorage.getItem('CURRENT_USER');
 
   if (user) {

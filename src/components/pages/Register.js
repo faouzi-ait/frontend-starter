@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { THEMES } from '../../redux/types';
 import { t } from '../../i18n/translate';
 
 import { selectedTheme } from '../../redux/selectors';
 
+import {
+  register_user,
+  register_user_success,
+} from '../../redux/actions/register';
+
 function Register() {
+  const dispatch = useDispatch();
   const { isDark } = useSelector(selectedTheme);
+  const { user, errors, registering } = useSelector((state) => state.register);
   const [password, setPassword] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
@@ -15,8 +22,12 @@ function Register() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!name || !password || !surname || !email)
+    if (!name || !password || !surname || !email) {
       alert('Please fill in the form');
+      return;
+    }
+
+    dispatch(register_user({ name, surname, email, password }));
   };
 
   return (
@@ -58,7 +69,16 @@ function Register() {
               value={password}
             />
           </div>
-          <button type="submit">Login</button>
+          <button type="submit">
+            {registering ? 'Registering...' : 'Register'}
+          </button>
+          <div>
+            {errors &&
+              errors.data &&
+              errors.data.message &&
+              errors.data.message}
+            {user && user.message && user.message}
+          </div>
         </form>
       </div>
     </div>

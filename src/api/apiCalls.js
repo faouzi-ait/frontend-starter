@@ -46,13 +46,13 @@ export async function login(payload) {
 
 export async function register(payload) {
   try {
-    return await apiClient.post('/signup', payload);
+    return await apiClient.post('/users/signup', payload);
   } catch (error) {
     return { error };
   }
 }
 
-export async function user_profile() {
+export async function getUserProfile() {
   try {
     return await apiClient.get('/profile');
   } catch (error) {

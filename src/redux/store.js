@@ -3,6 +3,7 @@ import logger from 'redux-logger';
 import { language } from './reducers/language';
 import { theme } from './reducers/theme';
 import { login } from './reducers/login';
+import { register } from './reducers/register';
 
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -10,7 +11,7 @@ import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import { sagas } from './saga';
 
-const combinedReducers = combineReducers({ language, theme, login });
+const combinedReducers = combineReducers({ language, theme, login, register });
 
 const sagaMiddleware = createSagaMiddleware();
 

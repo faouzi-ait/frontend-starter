@@ -5,34 +5,32 @@ import { t } from '../../i18n/translate';
 
 import { selectedTheme } from '../../redux/selectors';
 
-import {
-  login_user_action,
-  logout,
-  setAuthenticationError,
-} from '../../redux/actions/login';
+import { login_user_action, logout } from '../../redux/actions/login';
 
 // import '../../sass/index.scss';
 
 function Login() {
   const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const { isDark } = useSelector(selectedTheme);
   const { authenticating, loggedIn, errors } = useSelector(
     (state) => state.login
   );
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!username || !password) alert('Please fill in the form');
+    if (!username || !password) return;
 
     const payload = {
       email: username,
       password,
     };
+
     dispatch(login_user_action(payload));
+    setPassword('');
+    setUsername('');
   };
 
   return (
