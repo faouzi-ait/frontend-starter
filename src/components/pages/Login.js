@@ -5,7 +5,7 @@ import { t } from '../../i18n/translate';
 
 import { selectedTheme } from '../../redux/selectors';
 
-import { login_user_action, logout } from '../../redux/actions/login';
+import { login_user_action } from '../../redux/actions/login';
 
 // import '../../sass/index.scss';
 
@@ -64,9 +64,6 @@ function Login() {
               errors.data.message &&
               errors.data.message}
           </span>
-          {loggedIn && (
-            <button onClick={() => dispatch(logout())}>logout</button>
-          )}
         </form>
       </div>
     </div>

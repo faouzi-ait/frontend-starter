@@ -7,6 +7,7 @@ import { switchTheme } from '../../redux/actions/theme';
 import { selectedTheme } from '../../redux/selectors';
 
 import ToggleButton from '../ui/ToggleButton';
+import { logout } from '../../redux/actions/login';
 
 import sun from '../../images/sun.svg';
 import night from '../../images/night.svg';
@@ -14,9 +15,17 @@ import night from '../../images/night.svg';
 function ToggleLanguage() {
   const dispatch = useDispatch();
   const { isDark } = useSelector(selectedTheme);
+  const { loggedIn } = useSelector((state) => state.login);
 
   return (
     <>
+      {loggedIn && (
+        <ToggleButton
+          onClick={() => dispatch(logout())}
+          classes="theme left-radius right-radius margin-right"
+          content={<img src="./flags/logout.png" alt="logout" width="25" />}
+        />
+      )}
       <ToggleButton
         onClick={() => dispatch(setLanguage(LOCALES.ENGLISH))}
         classes="theme left-radius right"

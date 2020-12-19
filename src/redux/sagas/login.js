@@ -25,7 +25,7 @@ export function* authentication({ payload }) {
     localStorage.setItem('CURRENT_USER', JSON.stringify(result.data.token));
     yield call(decodeUserProfile);
     yield put(setIsUserAuthenticated(true));
-    // window.location.href = '/dashboard';
+    window.location.href = '/dashboard';
   }
   yield put(setIsAuthenticating(false));
 }
