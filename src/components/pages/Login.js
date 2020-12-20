@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { THEMES } from '../../redux/types';
 import { t } from '../../i18n/translate';
@@ -18,6 +18,21 @@ function Login() {
     (state) => state.login
   );
 
+  const activationLandingScreen = (query) => {
+    const queryString = query;
+    const urlParams = new URLSearchParams(queryString);
+    const status = urlParams.get('status');
+
+    switch (status) {
+      case 'activated':
+        return 'Your account is now activated';
+      case 'expired':
+        return 'Your activation token has expired, please renew your token and try again';
+      case 'already_activated':
+        return 'Your account is already active, please login to access your account';
+    }
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -35,6 +50,7 @@ function Login() {
 
   return (
     <div className={`baseTheme app ${isDark ? THEMES.DARK : THEMES.LIGHT}`}>
+      {activationLandingScreen(window.location.search)}
       <div className="loginForm">
         <form onSubmit={onSubmit}>
           <div>

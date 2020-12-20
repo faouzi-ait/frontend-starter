@@ -16,7 +16,6 @@ export function* user_registration({ payload }) {
   const result = yield call(register, payload);
 
   if (result.error) {
-    console.log(result);
     yield put(registering(false));
     const { data, status } = result.error.response;
     yield put(register_user_failure({ data, status }));

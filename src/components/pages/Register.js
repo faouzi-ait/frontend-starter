@@ -77,7 +77,7 @@ function Register() {
               errors.data &&
               errors.data.message &&
               errors.data.message}
-            {user && user.message && user.message}
+            {user && user.message && 'Registration successful, thank you.'}
           </div>
         </form>
       </div>
