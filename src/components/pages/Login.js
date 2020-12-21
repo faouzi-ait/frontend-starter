@@ -81,7 +81,7 @@ function Login() {
             style={{ cursor: 'pointer', userSelect: 'none' }}>
             {t('loginToken')}
           </span>
-          {isOpen && <TokenPane />}
+          {isOpen && <TokenPane setOpen={setIsOpen} />}
           <span>
             {errors &&
               errors.data &&

@@ -23,15 +23,24 @@ form {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 66%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    min-width: 13%;
-    min-height: 10%;
+    min-width: 23%;
+    min-height: 20%;
     background: var(--theme-token_panel-background);
     border-radius: 10px;
 }
 
-.tokenPaneMsg {
+.tokenPaneMsg,
+.closeBtn {
     color: var(--theme-token_panel-text)
+}
+
+.closeBtn {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
 }

@@ -16,8 +16,8 @@ export function* resendToken(payload) {
   if (result.error) {
     const { data, status } = result.error.response;
     yield put(resendActivationTokenFailure({ data, status }));
-    // yield delay(4000);
-    // yield put(resendActivationTokenFailure(null));
+    yield delay(4000);
+    yield put(resendActivationTokenFailure(null));
   } else {
     console.log('SUCCESS');
     yield put(resendActivationTokenSuccess(result.data));
