@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import TokenPane from '../ui/TokenPane';
 import { THEMES } from '../../redux/types';
 import { t } from '../../i18n/translate';
 
@@ -11,6 +12,7 @@ import { login_user_action } from '../../redux/actions/login';
 
 function Login() {
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { isDark } = useSelector(selectedTheme);
@@ -74,6 +76,12 @@ function Login() {
               {authenticating ? 'Logging in...' : 'Login'}
             </button>
           )}
+          <span
+            onClick={() => setIsOpen(!isOpen)}
+            style={{ cursor: 'pointer', userSelect: 'none' }}>
+            {t('loginToken')}
+          </span>
+          {isOpen && <TokenPane />}
           <span>
             {errors &&
               errors.data &&

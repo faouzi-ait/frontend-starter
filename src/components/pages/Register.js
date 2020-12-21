@@ -4,11 +4,7 @@ import { THEMES } from '../../redux/types';
 import { t } from '../../i18n/translate';
 
 import { selectedTheme } from '../../redux/selectors';
-
-import {
-  register_user,
-  register_user_success,
-} from '../../redux/actions/register';
+import { register_user } from '../../redux/actions/register';
 
 function Register() {
   const dispatch = useDispatch();
@@ -77,7 +73,9 @@ function Register() {
               errors.data &&
               errors.data.message &&
               errors.data.message}
-            {user && user.message && 'Registration successful, thank you.'}
+            {user &&
+              user.message &&
+              'Registration successful, please check your email to activate your account'}
           </div>
         </form>
       </div>

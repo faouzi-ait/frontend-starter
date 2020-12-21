@@ -8,5 +8,6 @@ export default {
     surname: 'Surname',
     email: 'Email',
     password: 'Password',
+    loginToken: 'Get a new activation token' 
   },
 };

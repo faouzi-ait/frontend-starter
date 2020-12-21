@@ -52,6 +52,15 @@ export async function register(payload) {
   }
 }
 
+export async function resendActivationTokenCall({ payload }) {
+  try {
+    console.log('FIRST: ', payload);
+    return await apiClient.post('/user/resend', payload);
+  } catch (error) {
+    return { error };
+  }
+}
+
 export async function getUserProfile() {
   try {
     return await apiClient.get('/profile');

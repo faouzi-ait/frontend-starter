@@ -16,3 +16,22 @@ form {
     justify-content: center;
     align-items: center;
 }
+
+.tokenPane {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 66%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 13%;
+    min-height: 10%;
+    background: var(--theme-token_panel-background);
+    border-radius: 10px;
+}
+
+.tokenPaneMsg {
+    color: var(--theme-token_panel-text)
+}

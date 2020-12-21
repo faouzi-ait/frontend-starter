@@ -8,5 +8,6 @@ export default {
     surname: 'Nom de Famille',
     email: 'Email',
     password: 'Mot de Passe',
+    loginToken: 'Nouveau code d\'activation',
   },
 };
